@@ -114,6 +114,7 @@ Letter Grade    A                 A
 
 Remarks: 
 ===================================
+========== End of Report ==========
 
 '''
 
@@ -137,3 +138,4 @@ print(("*" + "\n") * 5)
 
 #create the comparison report for both students
 compare(student_name1,student1_letter_grade,avg_grade1, max_grade1, low_grade1, student_name2,student2_letter_grade, avg_grade2, max_grade2, low_grade2)
+print("="*10, "End of Report ","="*10)
