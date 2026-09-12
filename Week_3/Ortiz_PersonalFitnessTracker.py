@@ -58,7 +58,7 @@ while len(workout_names) >= 0:
         rate = calories_per_minute(calories, duration) #calls calories_per_minute function to return rate
         intensity = get_intensity(rate) #uses rate from calories_per_minute to return intensity
         print("Result: ", duration, " min", " | ", rate, " cal/min" ," | ", "Intensity: ",intensity) #prints summary line for current workout
-        workouts_logged  = workouts_logged +1
+        workouts_logged = workouts_logged +1
         print()
     elif workout_names[0] == "Done":
         workout_names.remove("Done")
@@ -67,7 +67,7 @@ while len(workout_names) >= 0:
         workout_names.remove("Done")
         print()
         print("="*6, "Session Summary", "="*6)
-        print("Workouts logged: ", len(workout_names))
+        print("Workouts logged: ", workouts_logged-1)
         total_calories, average_calories = calculate_average(workout_calories)
         print("Total Calories: ", total_calories, "\nAverage Calories: ", average_calories)
         best_workout_calories, best_workout_name = find_best_workout(workout_names, workout_calories)
