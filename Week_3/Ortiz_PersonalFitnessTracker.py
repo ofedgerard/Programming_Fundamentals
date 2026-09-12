@@ -9,7 +9,30 @@ def get_intensity(rate):
         return "Moderate"
     else:
         return "High"
-    
+
+def calculate_total(list):
+    list_total = 0
+    for i in list:
+        list_total += i
+    return list_total
+
+def calculate_average (list):
+    list_total = calculate_total(list)
+    list_average = round(list_total/len(list),1)
+    return list_total, list_average
+
+def find_best_workout(names, calories):
+    best_workout_name = ""
+    best_workout_calories = 0
+    for names, calories in zip(names, calories):
+        if calories > best_workout_calories:
+            best_workout_calories = calories
+            best_workout_name = names
+        elif calories == best_workout_calories:
+            best_workout_calories = best_workout_calories
+            best_workout_name = best_workout_name
+    return best_workout_calories, best_workout_name
+
 
 def get_workout(durations): #this function calls the calories_per_minute and get_intensity functions to shorten the main body
     duration = int(input("Enter the duration of workout in minutes: ")) #collects duration in minutes
@@ -22,22 +45,37 @@ def get_workout(durations): #this function calls the calories_per_minute and get
 workout_names = []
 workout_durations = []
 workout_calories = []
-break_word = "Done"
-i = 0 #counter for workout_names
+workouts_logged = 1
 while len(workout_names) >= 0:
+    print("--- Workout ", workouts_logged , " ---")
     workout_name = input('Workout name (enter "Done" if finished): ').title() #collects workout name
     workout_names.append(workout_name)
-    if workout_name != break_word:
+    if workout_name != "Done":
         duration = int(input("Enter the duration of workout in minutes: ")) #collects duration in minutes
         workout_durations.append(duration)
         calories = int(input("Enter the number of calories burned: ")) #collects callories burned
         workout_calories.append(calories)
         rate = calories_per_minute(calories, duration) #calls calories_per_minute function to return rate
         intensity = get_intensity(rate) #uses rate from calories_per_minute to return intensity
-        print("Result: ", duration, " min", " | ", calories, " cal" ," | ", intensity) #prints summary line for current workout
-    elif workout_names[0] == break_word:
-        print("There were no workouts logged")
+        print("Result: ", duration, " min", " | ", rate, " cal/min" ," | ", "Intensity: ",intensity) #prints summary line for current workout
+        workouts_logged  = workouts_logged +1
+        print()
+    elif workout_names[0] == "Done":
+        workout_names.remove("Done")
         break
     else:
-        print("summary goes here")
+        workout_names.remove("Done")
+        print()
+        print("="*6, "Session Summary", "="*6)
+        print("Workouts logged: ", len(workout_names))
+        total_calories, average_calories = calculate_average(workout_calories)
+        print("Total Calories: ", total_calories, "\nAverage Calories: ", average_calories)
+        best_workout_calories, best_workout_name = find_best_workout(workout_names, workout_calories)
+        print("Most Calories Burned: ", best_workout_calories, "\nWorkout Name: ", best_workout_name)
+        print("="*29, "\n")
         break
+
+if len(workout_names) > 0:
+    print("All workouts logged. Great job staying active!", "\n")
+else:
+    print("There were no workouts logged", "\n")
