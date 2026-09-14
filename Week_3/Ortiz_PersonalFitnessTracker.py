@@ -50,15 +50,6 @@ def find_best_workout(names, calories):
             best_workout_name = best_workout_name
     return best_workout_calories, best_workout_name
 
-
-def get_workout(durations): #this function calls the calories_per_minute and get_intensity functions to shorten the main body
-    duration = int(input("Enter the duration of workout in minutes: ")) #collects duration in minutes
-    calories = int(input("Enter the number of calories burned: ")) #collects callories burned
-    rate = calories_per_minute(calories, duration)
-    intensity = get_intensity(rate)
-    durations.append(duration)
-    return duration, calories, rate, intensity
-
 workout_names = []
 workout_durations = []
 workout_calories = []
