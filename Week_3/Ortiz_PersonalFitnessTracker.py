@@ -1,26 +1,43 @@
+"""
+Author: Gerard Ortiz
+Date: 9/13/2026
+Tier Level: Intermediate
+
+Description:
+program will collect information about a series of workout sessions and 
+report on the user's performance for each one using loops and functions
+"""
+
+#Takes calories and duration to calculate the rate of calroeis burned per min
 def calories_per_minute(calories, duration):
     rate = round(calories/duration,1)
     return rate
 
+#Takes the rate from calories_per_minute and determines intestity of workout
 def get_intensity(rate):
     if rate < 5.0:
         return "Low"
     elif rate <= 9.9:
         return "Moderate"
     else:
-        return "High"
+        return "High"#
 
+#takes a list and uses a for loop to calculate and return the total and lenght of the list
 def calculate_total(list):
     list_total = 0
+    List_lenght = 0
     for i in list:
         list_total += i
-    return list_total
+        List_lenght = List_lenght + 1
+    return list_total, List_lenght
 
+#Uses calculate_total to calculate the average of a list
 def calculate_average (list):
-    list_total = calculate_total(list)
-    list_average = round(list_total/len(list),1)
+    list_total, list_lenght = calculate_total(list)
+    list_average = round(list_total/list_lenght,1)
     return list_total, list_average
 
+#Takes a the list of user input workout_names and calories burned and returns which workout burned the most calories
 def find_best_workout(names, calories):
     best_workout_name = ""
     best_workout_calories = 0
@@ -46,6 +63,7 @@ workout_names = []
 workout_durations = []
 workout_calories = []
 workouts_logged = 1
+
 while len(workout_names) >= 0:
     print("--- Workout ", workouts_logged , " ---")
     workout_name = input('Workout name (enter "Done" if finished): ').title() #collects workout name
