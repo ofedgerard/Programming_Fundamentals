@@ -1,0 +1,15 @@
+2025-09-10,Grocery shopping,$12.50,Food
+2025-09-10,Monthly gym membership,$49.99,Health
+2026-09-18,uber,30.00,ride
+2026-09-18,uber,30.00,ride
+2026-09-18,uber,30.00,ride
+2026-09-18,food panda,40.00,food
+2026-09-18,run mag mile,50.00,Health
+2026-09-18,reacher,10.00,netflix
+2026-09-18,hmart,30.00,food
+2026-09-18,run,10.00,health
+2026-09-18,run2,20.00,health
+2026-09-18,netflix,10.00,entertainment
+2026-09-18,amazon,10.00,shopping
+2026-09-20,pc parts,$20.00,Pc
+2026-09-20,pc parts 2,$15.00,Pc
