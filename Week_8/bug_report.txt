@@ -1,0 +1,86 @@
+
+Bug#: 1
+Type: Crash
+Line(s): line 69
+Original: csv_file.close()
+Fixed: moved line 69 after student_records.append(student_record) - line 88
+Symptom: the csv file is being closed before 
+         the program can loop on the rows and append to the list
+Explanation: By moving the .close() line after loop, the program could read the files
+             before closing the connection to the file.
+
+Bug#: 2
+Type: Logic
+Line(s): line 69
+Original: csv_file.close()
+Fixed: student_records.clear()
+Symptom: the bug was causing the program to keep adding the same students when the csv is reloaded
+Explanation: student_record.clear() deletes the rows from the list when a new csv is loaded
+
+Bug#: 3
+Type: Logic
+Line(s): line 22
+Original: csv_loaded = False
+Fixed: csv_loaded = True
+Symptom: Option 2 checks if csv_loaded is True or False but the csv_loaded is defaulted to False
+         with no lines changing it to True
+Explanation: csv_loaded is changed to True and allows for option 2 logic to work corectly
+
+Bug#: 4
+Type: Subtle Logic
+Line(s): line 106
+Original: row_number = 1
+Fixed: added row_number += 1 in the for loop
+Symptom: the for loop does not increment the row_number counter sand causes the row numbers to remain at 1
+Explanation: the row_number is incremented by one for each iteration of the loop and numbers
+             the rows correctly
+
+Bug#: 5
+Type: Subtle Logic
+Line(s): line 135
+Original:  while search_index <= len(student_records):
+Fixed:  while search_index < len(student_records):
+Symptom: <= allows the program to access an invalid index
+Explanation: allows the program access only valid indexes
+
+Bug#: 6
+Type: Logic
+Line(s): line 138
+Original:  search_index = len(student_records)  - 1
+Fixed:  break
+Symptom: this line only resets the search index to the last student
+Explanation: allows the program to break
+
+            search_id = input("Enter the Student ID to search for: ").strip()
+
+Bug#: 7
+Type: Crash
+Line(s): line 149
+Original: print(f"  Student ID    : {found_student['Student_ID']}")
+Fixed: print(f"  Student ID    : {found_student['StudentID']}")
+Symptom: program is crashing because it is accessing the wrong tuple
+Explanation: allows the program to access the correct tuple and enable the display
+
+Bug#: 8
+Type: Logic
+Line(s): line 131
+Original:search_id = input("Enter the Student ID to search for: ").strip()
+Fixed: search_id = input("Enter the Student ID to search for: ").strip().upper()
+Symptom: search_id is case sensitive
+Explanation: adding .upper() enables the comparison to be case-insensitive
+
+Bug#: 9
+Type: Logic
+Line(s): line 25
+Original: found_student = None
+Fixed: found_student = None
+Symptom: found_student is defaulting to the last found_student instead of reseting every search
+Explanation: adding found_student = None to line 132 resets the variable every search
+
+Bug#: 10
+Type: Logic
+Line(s): line 159
+Original: elif menu_choice == 4:
+Fixed: elif menu_choice == "4":
+Symptom: expected value is an int
+Explanation: changed expected value to string to make navigation successful
